@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatter</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__wrapper container">
+                <div class="logo">
+                    <div class="logo__image">
+                        <img src="img/logo.svg" alt="logo">
+                    </div>
+                    <div class="logo__text">Pretty Text</div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="hero main__hero">
+                <div class="small-container">
+                    <div class="hero__wrapper">
+                        <div class="hero__body">
+                            <div class="title hero__title">About Service</div>
+                            <div class="hero__text">
+                                Perhaps you have often encountered the fact that after copying text from, for example,
+                                pdf files, completely unnecessary newline symbols were copied along with the text. With
+                                the help of this service, you will be able to delete them and carry out similar
+                                manipulations in a matter of seconds. What's more, regular expressions are available
+                                here!
+                            </div>
+                        </div>
+                        <div class="hero__image">
+                            <img src="img/logo.svg" alt="hero-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="formatter main__formatter">
+                <div class="small-container">
+                    <div class="title formatter__title">Format your text</div>
+                    <form class="form">
+                        <div class="settings">
+                            <div class="replacement form-area">
+                                <div class="form__title">Replacement</div>
+                                <div class="inputs">
+                                    <div class="input-group">
+                                        <label for="find">Find:</label>
+                                        <input class="text-input" type="text" id="find">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="replace">Replace:</label>
+                                        <input class="text-input" type="text" id="replace">
+                                    </div>
+                                </div>
+                                <div class="checkboxes">
+                                    <div class="checkbox-group">
+                                        <input class="checkbox-input" type="checkbox" id="regex">
+                                        <label for="regex">use regex</label>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <input class="checkbox-input" type="checkbox" id="all-match">
+                                        <label for="all-match">show match</label>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <input class="checkbox-input" type="checkbox" id="match">
+                                        <label for="match">first match only</label>
+                                    </div>
+                                </div>
+                                <button class="btn replacement__btn">Replace</button>
+                            </div>
+                            <div class="tools form-area">
+                                <div class="form__title">Tools</div>
+                                <div class="accordion tools__body" id="accordion">
+                                    <div class="accordion-item active">
+                                        <div class="accordion-item__title">Transforming</div>
+                                        <div class="accordion-item__body">
+                                            <div class="badges">
+                                                <div class="badge" onclick="toUpperText()">Upper</div>
+                                                <div class="badge" onclick="toLowerText()">Lower</div>
+                                                <div class="badge" onclick="toCapitalizeText()">Capitalize</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <div class="accordion-item__title">Removing</div>
+                                        <div class="accordion-item__body">
+                                            <div class="badges">
+                                                <div class="badge">Remove -</div>
+                                                <div class="badge">Remove /</div>
+                                                <div class="badge">Remove \</div>
+                                                <div class="badge">Extra Spaces</div>
+                                                <div class="badge">All Spaces</div>
+                                                <div class="badge">Remove Enter</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item active">
+                                        <div class="accordion-item__title">Actions</div>
+                                        <div class="accordion-item__body">
+                                            <div class="badges">
+                                                <div class="badge">Action 1</div>
+                                                <div class="badge">Action 2</div>
+                                                <div class="badge">Action 3</div>
+                                                <div class="badge">Action 4</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-box">
+                            <div class="form-area text-box__form-area">
+                                <textarea class="textarea" id="textarea" placeholder="Enter the text..."></textarea>
+                            </div>
+                            <div class="text-box__control">
+                                <div class="text-box__buttons">
+                                    <a href="#!" class="btn" onclick="clearTextarea()">Clear</a>
+                                    <a href="#!" class="btn" onclick="copyToClipboard()">Copy</a>
+                                </div>
+                                <div class="text-box__properties">
+                                    <div class="property">
+                                        <div class="property__name">Characters:</div>
+                                        <div class="badge badge_no-cursor">544</div>
+                                    </div>
+                                    <div class="property">
+                                        <div class="property__name">Words:</div>
+                                        <div class="badge badge_no-cursor">544</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="container footer__container">
+                <div class="footer__text">All Rights Reserved</div>
+            </div>
+        </footer>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+
+</html>
