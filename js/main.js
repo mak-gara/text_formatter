@@ -11,6 +11,21 @@ for (i = 0; i < accordionItems.length; i++) {
 }
 
 const textarea = document.getElementById('textarea');
+const characters = document.getElementById('characters');
+const words = document.getElementById('words');
+
+// adding an input event to a text field
+textarea.addEventListener('input', () => {
+    const inputText = textarea.value;
+    // displaying the number of characters and words
+    if (inputText.length == 0) {
+        characters.innerHTML = 0;
+        words.innerHTML = 0;
+    } else {
+        characters.innerHTML = inputText.length;
+        words.innerHTML = inputText.match(/[^\s.,!?":;()\[\]]+/gu).length;
+    }    
+})
 
 // toUpperText() function converts the entire contents of a text field to uppercase
 const toUpperText = () => {
@@ -32,6 +47,8 @@ const toCapitalizeText = () => {
 // clearTextarea() function clears the text field
 const clearTextarea = () => {
     textarea.value = "";
+    characters.innerHTML = 0;
+    words.innerHTML = 0;
 }
 
 // copyToClipboard() function copies the text from the text field to the clipboard 
