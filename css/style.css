@@ -301,7 +301,7 @@ body {
     margin-bottom: 10px;
 }
 
-.textarea {
+.text-field {
     width: 100%;
     height: 100%;
     background: none;
@@ -350,4 +350,8 @@ body {
     transform: translate(-50%, -50%);
     font-size: 20px;
     line-height: 23px;
+}
+
+.highlighted {
+    background-color: yellow;
 }

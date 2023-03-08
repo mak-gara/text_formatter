@@ -10,13 +10,20 @@ for (i = 0; i < accordionItems.length; i++) {
     });
 }
 
-const textarea = document.getElementById('textarea');
+const text_field = document.getElementById('text-field');
+const searchInput = document.getElementById('find');
+const replaceInput = document.getElementById('replace');
 const characters = document.getElementById('characters');
 const words = document.getElementById('words');
 
 // adding an input event to a text field
-textarea.addEventListener('input', () => {
-    const inputText = textarea.value;
+text_field.addEventListener('input', () => {
+    const searchTerm = searchInput.value;
+    const inputText = text_field.innerText;
+
+    // highlighting
+    text_field.innerHTML = highlightText(searchTerm, inputText);
+
     // displaying the number of characters and words
     if (inputText.length == 0) {
         characters.innerHTML = 0;
@@ -27,33 +34,40 @@ textarea.addEventListener('input', () => {
     }    
 })
 
+// highlightText() function highlights the text
+const highlightText = (searchTerm, searchText) => {
+    const regex = new RegExp(searchTerm, 'g');
+    const highlightedText = searchText.replace(regex, `<span class="highlighted">${searchTerm}</span>`);
+    return highlightedText;
+}
+
 // toUpperText() function converts the entire contents of a text field to uppercase
 const toUpperText = () => {
-    textarea.value = textarea.value.toUpperCase();
+    text_field.innerText = text_field.innerText.toUpperCase();
 }
 
 // toLowerText() function converts the entire contents of a text field to lowercase
 const toLowerText = () => {
-    textarea.value = textarea.value.toLowerCase();
+    text_field.innerText = text_field.innerText.toLowerCase();
 }
 
 // toCapitalizeText() function converts the first letter of each word in the text to uppercase
 const toCapitalizeText = () => {
-    textarea.value = textarea.value.replace(/\b\w/g, (char) => {
+    text_field.innerText = text_field.innerText.replace(/\b\w/g, (char) => {
         return char.toUpperCase()
     });
 }
 
-// clearTextarea() function clears the text field
-const clearTextarea = () => {
-    textarea.value = "";
-    characters.innerHTML = 0;
-    words.innerHTML = 0;
+// clearTextField() function clears the text field
+const clearTextField = () => {
+    text_field.innerText = "";
+    characters.innerText = 0;
+    words.innerText = 0;
 }
 
 // copyToClipboard() function copies the text from the text field to the clipboard 
 const copyToClipboard = () => {
-    navigator.clipboard.writeText(textarea.value)
+    navigator.clipboard.writeText(text_field.innerText)
     .then(() => {
       console.log('Text copied to clipboard');
     })
