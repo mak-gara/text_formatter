@@ -10,19 +10,19 @@ for (i = 0; i < accordionItems.length; i++) {
     });
 }
 
-const text_field = document.getElementById('text-field');
+const textField = document.getElementById('text-field');
 const searchInput = document.getElementById('find');
 const replaceInput = document.getElementById('replace');
 const characters = document.getElementById('characters');
 const words = document.getElementById('words');
 
 // adding an input event to a text field
-text_field.addEventListener('input', () => {
+textField.addEventListener('input', () => {
     const searchTerm = searchInput.value;
-    const inputText = text_field.innerText;
+    const inputText = textField.innerText;
 
-    // highlighting
-    text_field.innerHTML = highlightText(searchTerm, inputText);
+    textField.innerHTML = highlightText(searchTerm, inputText);
+    moveCursorToEnd(textField);
 
     // displaying the number of characters and words
     if (inputText.length == 0) {
@@ -34,6 +34,17 @@ text_field.addEventListener('input', () => {
     }    
 })
 
+// moveCursorToEnd() function moves the cursor to the end of the typed text in an editable div 
+const moveCursorToEnd = (elem) => {
+    elem.focus();
+    let range = document.createRange();
+    range.selectNodeContents(elem);
+    range.collapse(false);
+    let selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
+
 // highlightText() function highlights the text
 const highlightText = (searchTerm, searchText) => {
     const regex = new RegExp(searchTerm, 'g');
@@ -43,31 +54,31 @@ const highlightText = (searchTerm, searchText) => {
 
 // toUpperText() function converts the entire contents of a text field to uppercase
 const toUpperText = () => {
-    text_field.innerText = text_field.innerText.toUpperCase();
+    textField.innerText = textField.innerText.toUpperCase();
 }
 
 // toLowerText() function converts the entire contents of a text field to lowercase
 const toLowerText = () => {
-    text_field.innerText = text_field.innerText.toLowerCase();
+    textField.innerText = textField.innerText.toLowerCase();
 }
 
 // toCapitalizeText() function converts the first letter of each word in the text to uppercase
 const toCapitalizeText = () => {
-    text_field.innerText = text_field.innerText.replace(/\b\w/g, (char) => {
+    textField.innerText = textField.innerText.replace(/\b\w/g, (char) => {
         return char.toUpperCase()
     });
 }
 
 // clearTextField() function clears the text field
 const clearTextField = () => {
-    text_field.innerText = "";
+    textField.innerText = "";
     characters.innerText = 0;
     words.innerText = 0;
 }
 
 // copyToClipboard() function copies the text from the text field to the clipboard 
 const copyToClipboard = () => {
-    navigator.clipboard.writeText(text_field.innerText)
+    navigator.clipboard.writeText(textField.innerText)
     .then(() => {
       console.log('Text copied to clipboard');
     })
