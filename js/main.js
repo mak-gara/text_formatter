@@ -18,10 +18,7 @@ const words = document.getElementById('words');
 
 // adding an input event to a text field
 textField.addEventListener('input', () => {
-    const searchTerm = searchInput.value;
-    const inputText = textField.innerText;
-
-    textField.innerHTML = highlightText(searchTerm, inputText, regex=true);
+    updateEditableDiv(searchInput.value, textField);
     moveCursorToEnd(textField);
 
     // displaying the number of characters and words
@@ -36,11 +33,13 @@ textField.addEventListener('input', () => {
 
 // adding an input event to a replace field
 searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value;
-    const inputText = textField.innerText;
-
-    textField.innerHTML = highlightText(searchTerm, inputText, regex=true);
+    updateEditableDiv(searchInput.value, textField);
 })
+
+//
+const updateEditableDiv = (searchTerm, editableDiv) => {
+    editableDiv.innerHTML = highlightText(searchTerm, editableDiv.innerText)
+} 
 
 // moveCursorToEnd() function moves the cursor to the end of the typed text in an editable div 
 const moveCursorToEnd = (elem) => {
