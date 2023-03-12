@@ -34,6 +34,14 @@ textField.addEventListener('input', () => {
     }    
 })
 
+// adding an input event to a replace field
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value;
+    const inputText = textField.innerText;
+
+    textField.innerHTML = highlightText(searchTerm, inputText);
+})
+
 // moveCursorToEnd() function moves the cursor to the end of the typed text in an editable div 
 const moveCursorToEnd = (elem) => {
     elem.focus();
