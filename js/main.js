@@ -21,7 +21,7 @@ textField.addEventListener('input', () => {
     const searchTerm = searchInput.value;
     const inputText = textField.innerText;
 
-    textField.innerHTML = highlightText(searchTerm, inputText);
+    textField.innerHTML = highlightText(searchTerm, inputText, regex=true);
     moveCursorToEnd(textField);
 
     // displaying the number of characters and words
@@ -39,7 +39,7 @@ searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value;
     const inputText = textField.innerText;
 
-    textField.innerHTML = highlightText(searchTerm, inputText);
+    textField.innerHTML = highlightText(searchTerm, inputText, regex=true);
 })
 
 // moveCursorToEnd() function moves the cursor to the end of the typed text in an editable div 
@@ -55,9 +55,32 @@ const moveCursorToEnd = (elem) => {
 
 // highlightText() function highlights the text
 const highlightText = (searchTerm, searchText) => {
-    const regex = new RegExp(searchTerm, 'g');
-    const highlightedText = searchText.replace(regex, `<span class="highlighted">${searchTerm}</span>`);
+    const regexCheckBox = document.getElementById('regex-checkbox');
+    let regexPattern;
+    if (regexCheckBox.checked) {
+        regexPattern = createRegExp(searchTerm);
+    } else {
+        regexPattern = new RegExp(escapeRegExp(searchTerm), 'g');
+    }
+    const highlightedText = searchText.replace(regexPattern, `<span class="highlighted">$&</span>`);
     return highlightedText;
+}
+
+// escapeRegExp() function escapes all metacharacters
+const escapeRegExp = (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// createRegExp() function creates regular expression from string
+const createRegExp = (regexString) => {
+    const regexParts = regexString.match(/^\/([^/]+)\/([a-z]*)$/);
+    if (!regexParts) {
+        throw new Error(`Invalid regex string: ${regexString}`);
+    }
+    const pattern = regexParts[1];
+    const flags = regexParts[2];
+    console.log(pattern, flags);
+    return new RegExp(pattern, flags);
 }
 
 // toUpperText() function converts the entire contents of a text field to uppercase
