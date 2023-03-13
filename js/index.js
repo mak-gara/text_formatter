@@ -1,3 +1,4 @@
+// createRegexFromString() function creates a regular expression from a string
 const createRegexFromString = (string) => {
     const regexParts = string.match(/^\/([^/]+)\/([a-z]*)$/);
     if (!regexParts) {
@@ -8,15 +9,19 @@ const createRegexFromString = (string) => {
     return new RegExp(pattern, flags);
 }
 
+// escapeRegex() function creates a regular expression ignoring special characters
 const escapeRegex = (string) => {
     return new RegExp(string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 }
 
+/* highlightText() function highlights text by wrapping matches
+in the text in a span element with the appropriate highlight class */
 const highlightText = (regex, text) => {
     const highlightedText = text.replace(regex, `<span class="highlighted">$&</span>`);
     return highlightedText;
 }
 
+// moveCursorToEnd() function moves the cursor to the end of the entered text in the text box
 const moveCursorToEnd = (elem) => {
     elem.focus();
     let range = document.createRange();
@@ -27,18 +32,17 @@ const moveCursorToEnd = (elem) => {
     selection.addRange(range);
 }
 
+/* updateTextBox() function updates the markup in a text box by generating 
+regular expression based on the state of regexCheckBox, showMatchCheckBox,
+firstMatchCheckBox, and then highlighting the matches. */
 const updateTextBox = () => {
-    // перевірка чи потрібно підсвічувати співпадіння
     if (showMatchCheckBox.checked) {
         let regex;
         if (regexCheckBox.checked) {
             regex = createRegexFromString(searchInput.value);
         } else {
-            // ігнорування метасимволів та літералів
             regex = escapeRegex(searchInput.value);
-
             if (!firstMatchCheckBox.checked) {
-                // додавання модифікатора g
                 regex = new RegExp(regex.source, 'g');
             }
         }
@@ -46,11 +50,12 @@ const updateTextBox = () => {
     }
 }
 
+// updateCounters() function updates the value of the character and word counter 
 const updateCounters = () => {
     const text = textBox.innerText
     characterCounter.innerHTML = text.length;
 
-    // перевірка чи не є рядок пустим та чи не складається він тільки з пробілів
+    // checking whether the string is empty and does not consist of only spaces
     if (!/^\s*$/g.test(text)) {
         wordCounter.innerHTML = textBox.innerText.match(/[^\s.,!?":;()\[\]]+/gu).length;
     } else {
@@ -58,6 +63,7 @@ const updateCounters = () => {
     }
 }
 
+// copyToClipboard() function copies the text from the text box to the clipboard
 const copyToClipboard = (elem) => {
     navigator.clipboard.writeText(elem.innerText)
         .then(() => {
@@ -67,6 +73,7 @@ const copyToClipboard = (elem) => {
             console.error('Error copying text: ', err);
         });
 }
+
 
 const accordion = document.getElementById('accordion');
 const accordionItems = accordion.getElementsByClassName('accordion-item');
@@ -80,7 +87,7 @@ const wordCounter = document.getElementById('words');
 const clearBtn = document.getElementById('clearBtn');
 const copyBtn = document.getElementById('copyBtn');
 
-// adding a click event handler to each accordionItems element
+
 for (i = 0; i < accordionItems.length; i++) {
     accordionItems[i].addEventListener('click', function (event) {
         if (event.target.className != 'badge') {
@@ -91,7 +98,6 @@ for (i = 0; i < accordionItems.length; i++) {
 
 textBox.addEventListener('input', () => {
     updateTextBox();
-    // переміщення курсора в кінець
     moveCursorToEnd(textBox);
     updateCounters();
 });
