@@ -86,6 +86,9 @@ const characterCounter = document.getElementById('characters');
 const wordCounter = document.getElementById('words');
 const clearBtn = document.getElementById('clearBtn');
 const copyBtn = document.getElementById('copyBtn');
+const upperBtn = document.getElementById('upperBtn');
+const lowerBtn = document.getElementById('lowerBtn');
+const capitalizeBtn = document.getElementById('capitalizeBtn');
 
 
 for (i = 0; i < accordionItems.length; i++) {
@@ -115,7 +118,22 @@ copyBtn.addEventListener('click', () => {
     copyToClipboard(textBox);
 });
 
+upperBtn.addEventListener('click', () => {
+    textBox.innerText = textBox.innerText.toUpperCase();
+    updateTextBox();
+});
 
+lowerBtn.addEventListener('click', () => {
+    textBox.innerText = textBox.innerText.toLowerCase();
+    updateTextBox();
+});
+
+capitalizeBtn.addEventListener('click', () => {
+    textBox.innerText = textBox.innerText.replace(/\b\w/g, (char) => {
+        return char.toUpperCase()
+    });
+    updateTextBox();
+});
 
 
 
