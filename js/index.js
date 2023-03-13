@@ -68,9 +68,30 @@ textBox.addEventListener('input', () => {
     updateTextBox();
     // переміщення курсора в кінець
     moveCursorToEnd(textBox);
+    updateCounters();
 })
 
 searchInput.addEventListener('input', () => {
     updateTextBox();
 })
+
+
+const characterCounter = document.getElementById('characters');
+const wordCounter = document.getElementById('words');
+
+const updateCounters = () => {
+    const text = textBox.innerText
+    characterCounter.innerHTML = text.length;
+    
+    // перевірка чи не є рядок пустим та чи не складається він тільки з пробілів
+    if (!/^\s*$/g.test(text)) {
+        wordCounter.innerHTML = textBox.innerText.match(/[^\s.,!?":;()\[\]]+/gu).length;
+    } else {
+        wordCounter.innerHTML = 0;
+    }
+}
+
+
+
+
 

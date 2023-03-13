@@ -51,24 +51,24 @@
                                 <div class="inputs">
                                     <div class="input-group">
                                         <label for="find">Find:</label>
-                                        <input class="text-input" type="text" id="find">
+                                        <input class="text-input" type="text" id="searchInput">
                                     </div>
                                     <div class="input-group">
                                         <label for="replace">Replace:</label>
-                                        <input class="text-input" type="text" id="replace">
+                                        <input class="text-input" type="text" id="replaceInput">
                                     </div>
                                 </div>
                                 <div class="checkboxes">
                                     <div class="checkbox-group">
-                                        <input class="checkbox-input" type="checkbox" id="regex-checkbox">
+                                        <input class="checkbox-input" type="checkbox" id="usingRegex">
                                         <label for="regex">use regex</label>
                                     </div>
                                     <div class="checkbox-group">
-                                        <input class="checkbox-input" type="checkbox" id="all-match">
+                                        <input class="checkbox-input" type="checkbox" id="showMatch" checked>
                                         <label for="all-match">show match</label>
                                     </div>
                                     <div class="checkbox-group">
-                                        <input class="checkbox-input" type="checkbox" id="match">
+                                        <input class="checkbox-input" type="checkbox" id="firstMatch">
                                         <label for="match">first match only</label>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="text-box">
                             <div class="form-area text-box__form-area">
-                                <div class="text-field" id="text-field" contenteditable="true"></div>
+                                <div class="text-field" id="textBox" contenteditable="true"></div>
                             </div>
                             <div class="text-box__control">
                                 <div class="text-box__buttons">
@@ -144,7 +144,8 @@
                 <div class="footer__text">All Rights Reserved</div>
             </div>
         </footer>
-        <script src="js/main.js"></script>
+        <!-- <script src="js/main.js"></script> -->
+        <script src="js/index.js"></script>
     </div>
 </body>
 

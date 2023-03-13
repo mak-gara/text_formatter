@@ -308,7 +308,8 @@ body {
     font-size: 16px;
     line-height: 19px;
     color: #C3C3C9;
-    resize: none;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .text-box__control {
