@@ -1,21 +1,3 @@
-const accordion = document.getElementById('accordion');
-const accordionItems = accordion.getElementsByClassName('accordion-item');
-
-// adding a click event handler to each accordionItems element
-for (i = 0; i < accordionItems.length; i++) {
-    accordionItems[i].addEventListener('click', function (event) {
-        if (event.target.className != 'badge') {
-            this.classList.toggle('active');
-        }
-    });
-}
-
-const textBox = document.getElementById('textBox');
-const searchInput = document.getElementById('searchInput');
-const regexCheckBox = document.getElementById('usingRegex');
-const showMatchCheckBox = document.getElementById('showMatch');
-const firstMatchCheckBox = document.getElementById('firstMatch');
-
 const createRegexFromString = (string) => {
     const regexParts = string.match(/^\/([^/]+)\/([a-z]*)$/);
     if (!regexParts) {
@@ -64,25 +46,10 @@ const updateTextBox = () => {
     }
 }
 
-textBox.addEventListener('input', () => {
-    updateTextBox();
-    // переміщення курсора в кінець
-    moveCursorToEnd(textBox);
-    updateCounters();
-})
-
-searchInput.addEventListener('input', () => {
-    updateTextBox();
-})
-
-
-const characterCounter = document.getElementById('characters');
-const wordCounter = document.getElementById('words');
-
 const updateCounters = () => {
     const text = textBox.innerText
     characterCounter.innerHTML = text.length;
-    
+
     // перевірка чи не є рядок пустим та чи не складається він тільки з пробілів
     if (!/^\s*$/g.test(text)) {
         wordCounter.innerHTML = textBox.innerText.match(/[^\s.,!?":;()\[\]]+/gu).length;
@@ -90,6 +57,64 @@ const updateCounters = () => {
         wordCounter.innerHTML = 0;
     }
 }
+
+const copyToClipboard = (elem) => {
+    navigator.clipboard.writeText(elem.innerText)
+        .then(() => {
+            console.log('Text copied to clipboard');
+        })
+        .catch(err => {
+            console.error('Error copying text: ', err);
+        });
+}
+
+const accordion = document.getElementById('accordion');
+const accordionItems = accordion.getElementsByClassName('accordion-item');
+const textBox = document.getElementById('textBox');
+const searchInput = document.getElementById('searchInput');
+const regexCheckBox = document.getElementById('usingRegex');
+const showMatchCheckBox = document.getElementById('showMatch');
+const firstMatchCheckBox = document.getElementById('firstMatch');
+const characterCounter = document.getElementById('characters');
+const wordCounter = document.getElementById('words');
+const clearBtn = document.getElementById('clearBtn');
+const copyBtn = document.getElementById('copyBtn');
+
+// adding a click event handler to each accordionItems element
+for (i = 0; i < accordionItems.length; i++) {
+    accordionItems[i].addEventListener('click', function (event) {
+        if (event.target.className != 'badge') {
+            this.classList.toggle('active');
+        }
+    });
+}
+
+textBox.addEventListener('input', () => {
+    updateTextBox();
+    // переміщення курсора в кінець
+    moveCursorToEnd(textBox);
+    updateCounters();
+});
+
+searchInput.addEventListener('input', () => {
+    updateTextBox();
+});
+
+clearBtn.addEventListener('click', () => {
+    textBox.innerHTML = '';
+    updateCounters();
+});
+
+copyBtn.addEventListener('click', () => {
+    copyToClipboard(textBox);
+});
+
+
+
+
+
+
+
 
 
 
