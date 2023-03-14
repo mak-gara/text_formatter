@@ -39,7 +39,14 @@ const updateTextBox = () => {
     if (showMatchCheckBox.checked) {
         let regex;
         if (regexCheckBox.checked) {
-            regex = createRegexFromString(searchInput.value);
+            /* catch an error that occurs when it is impossible
+            to create a regular expression from a string */
+            try {
+                regex = createRegexFromString(searchInput.value);
+            } catch (e) {
+                textBox.innerHTML = textBox.innerText;
+                return;
+            }
         } else {
             regex = escapeRegex(searchInput.value);
             if (!firstMatchCheckBox.checked) {
