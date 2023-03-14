@@ -310,6 +310,7 @@ body {
     color: #C3C3C9;
     word-wrap: break-word;
     word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .text-box__control {
@@ -356,4 +357,5 @@ body {
 .highlighted {
     background-color: yellow;
     color: #4C33FF;
+    font-weight: 600;
 }
