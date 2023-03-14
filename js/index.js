@@ -135,6 +135,9 @@ capitalizeBtn.addEventListener('click', () => {
     updateTextBox();
 });
 
+[regexCheckBox, showMatchCheckBox, firstMatchCheckBox].forEach((item) => {
+    item.addEventListener('change', updateTextBox);
+})
 
 
 
