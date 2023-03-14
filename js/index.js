@@ -175,13 +175,10 @@ capitalizeBtn.addEventListener('click', () => {
 replaceBtn.addEventListener('click', (event) => {
     event.preventDefault();
     let regex;
-    if (regexCheckBox.checked) {
-        regex = createRegexFromString(searchInput.value);
-    } else {
-        regex = escapeRegex(searchInput.value);
-        if (!firstMatchCheckBox.checked) {
-            regex = new RegExp(regex.source, 'g');
-        }
+    try {
+        regex = generateRegex();
+    } catch {
+        return;
     }
     const replacedText = textBox.innerText.replace(regex, replaceInput.value);
     textBox.innerHTML = highlightText(regex, replacedText);
