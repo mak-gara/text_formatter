@@ -14,8 +14,10 @@ const escapeRegex = (string) => {
     return new RegExp(string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 }
 
-/* highlightText() function highlights text by wrapping matches
-in the text in a span element with the appropriate highlight class */
+/*
+highlightText() function highlights text by wrapping matches
+in the text in a span element with the appropriate highlight class
+*/
 const highlightText = (regex, text) => {
     const highlightedText = text.replace(regex, `<span class="highlighted">$&</span>`);
     return highlightedText;
@@ -32,9 +34,29 @@ const moveCursorToEnd = (elem) => {
     selection.addRange(range);
 }
 
-/* updateTextBox() function updates the markup in a text box by generating 
+/* 
+generateRegex() function generates a regular expression
+based on the content of the searchInput text field and
+the state of the regexCheckBox, firstMatchCheckBox checkboxes 
+*/
+const generateRegex = () => {
+    let regex;
+    if (regexCheckBox.checked) {
+        regex = createRegexFromString(searchInput.value);
+    } else {
+        regex = escapeRegex(searchInput.value);
+        if (!firstMatchCheckBox.checked) {
+            regex = new RegExp(regex.source, 'g');
+        }
+    }
+    return regex;
+}
+
+/*
+updateTextBox() function updates the markup in a text box by generating 
 regular expression based on the state of regexCheckBox, showMatchCheckBox,
-firstMatchCheckBox, and then highlighting the matches. */
+firstMatchCheckBox, and then highlighting the matches.
+*/
 const updateTextBox = () => {
     if (showMatchCheckBox.checked) {
         let regex;
