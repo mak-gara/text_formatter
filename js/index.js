@@ -47,6 +47,8 @@ const updateTextBox = () => {
             }
         }
         textBox.innerHTML = highlightText(regex, textBox.innerText);
+    } else {
+        textBox.innerHTML = textBox.innerText;
     }
 }
 
