@@ -56,33 +56,16 @@ const generateRegex = () => {
     return regex;
 }
 
-/*
-updateTextBox() function updates the markup in a text box by generating 
-regular expression based on the state of regexCheckBox, showMatchCheckBox,
-firstMatchCheckBox, and then highlighting the matches.
-*/
+// updateTextBox() function updates the markup in text box
 const updateTextBox = () => {
     if (showMatchCheckBox.checked) {
-        let regex;
-        if (regexCheckBox.checked) {
-            /* catch an error that occurs when it is impossible
-            to create a regular expression from a string */
-            try {
-                regex = createRegexFromString(searchInput.value);
-            } catch (e) {
-                textBox.innerHTML = textBox.innerText;
-                return;
-            }
-        } else {
-            regex = escapeRegex(searchInput.value);
-            if (!firstMatchCheckBox.checked) {
-                regex = new RegExp(regex.source, 'g');
-            }
+        const regex = generateRegex();
+        if (regex) {
+            textBox.innerHTML = highlightText(regex, textBox.innerText);
+            return;
         }
-        textBox.innerHTML = highlightText(regex, textBox.innerText);
-    } else {
-        textBox.innerHTML = textBox.innerText;
     }
+    textBox.innerHTML = textBox.innerText;
 }
 
 // updateCounters() function updates the value of the character and word counter 
