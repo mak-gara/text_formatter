@@ -42,7 +42,11 @@ the state of the regexCheckBox, firstMatchCheckBox checkboxes
 const generateRegex = () => {
     let regex;
     if (regexCheckBox.checked) {
-        regex = createRegexFromString(searchInput.value);
+        try {
+            regex = createRegexFromString(searchInput.value);
+        } catch {
+            return undefined;
+        }
     } else {
         regex = escapeRegex(searchInput.value);
         if (!firstMatchCheckBox.checked) {
@@ -174,14 +178,11 @@ capitalizeBtn.addEventListener('click', () => {
 
 replaceBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    let regex;
-    try {
-        regex = generateRegex();
-    } catch {
-        return;
+    const regex = generateRegex();
+    if (regex) {
+        const replacedText = textBox.innerText.replace(regex, replaceInput.value);
+        textBox.innerHTML = highlightText(regex, replacedText);
     }
-    const replacedText = textBox.innerText.replace(regex, replaceInput.value);
-    textBox.innerHTML = highlightText(regex, replacedText);
 });
 
 
