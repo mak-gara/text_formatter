@@ -88,6 +88,7 @@ const accordion = document.getElementById('accordion');
 const accordionItems = accordion.getElementsByClassName('accordion-item');
 const textBox = document.getElementById('textBox');
 const searchInput = document.getElementById('searchInput');
+const replaceInput = document.getElementById('replaceInput');
 const regexCheckBox = document.getElementById('usingRegex');
 const showMatchCheckBox = document.getElementById('showMatch');
 const firstMatchCheckBox = document.getElementById('firstMatch');
@@ -98,6 +99,7 @@ const copyBtn = document.getElementById('copyBtn');
 const upperBtn = document.getElementById('upperBtn');
 const lowerBtn = document.getElementById('lowerBtn');
 const capitalizeBtn = document.getElementById('capitalizeBtn');
+const replaceBtn = document.getElementById('replaceBtn');
 
 
 for (i = 0; i < accordionItems.length; i++) {
@@ -147,6 +149,21 @@ capitalizeBtn.addEventListener('click', () => {
 [regexCheckBox, showMatchCheckBox, firstMatchCheckBox].forEach((item) => {
     item.addEventListener('change', updateTextBox);
 })
+
+replaceBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    let regex;
+    if (regexCheckBox.checked) {
+        regex = createRegexFromString(searchInput.value);
+    } else {
+        regex = escapeRegex(searchInput.value);
+        if (!firstMatchCheckBox.checked) {
+            regex = new RegExp(regex.source, 'g');
+        }
+    }
+    const replacedText = textBox.innerText.replace(regex, replaceInput.value);
+    textBox.innerHTML = highlightText(regex, replacedText);
+});
 
 
 
