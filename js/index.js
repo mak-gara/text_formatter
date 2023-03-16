@@ -92,7 +92,6 @@ const copyToClipboard = (elem) => {
         });
 }
 
-
 const accordion = document.getElementById('accordion');
 const accordionItems = accordion.getElementsByClassName('accordion-item');
 const textBox = document.getElementById('textBox');
@@ -109,7 +108,16 @@ const upperBtn = document.getElementById('upperBtn');
 const lowerBtn = document.getElementById('lowerBtn');
 const capitalizeBtn = document.getElementById('capitalizeBtn');
 const replaceBtn = document.getElementById('replaceBtn');
-
+const removingBlock = document.getElementById('removing');
+const removingItems = removingBlock.getElementsByClassName('badge');
+const replacePatterns = {
+    'minus': [/-/g, ''],
+    'slash': [/\//g, ''],
+    'backslash': [/\\/g, ''],
+    'extra-spaces': [/ {2,}/g, ' '],
+    'all-spaces': [/ /g, ''],
+    'enter': [/\n/g, ' ']
+};
 
 for (i = 0; i < accordionItems.length; i++) {
     accordionItems[i].addEventListener('click', function (event) {
@@ -166,6 +174,22 @@ replaceBtn.addEventListener('click', (event) => {
         const replacedText = textBox.innerText.replace(regex, replaceInput.value);
         textBox.innerHTML = highlightText(regex, replacedText);
     }
+});
+
+Object.values(removingItems).forEach((item) => {
+    item.addEventListener('click', (event) => {
+        const dataType = event.target.getAttribute('data-type');
+        const replacePattern = replacePatterns[dataType];
+        const regex = generateRegex();
+        if (replacePattern) {
+            const clearedText = textBox.innerText.replace(replacePattern[0], replacePattern[1])
+            if (regex) {
+                textBox.innerHTML = highlightText(regex, clearedText);
+            } else {
+                textBox.innerHTML = clearedText;
+            }
+        }
+    });
 });
 
 
