@@ -70,7 +70,9 @@ const updateTextBox = () => {
 
 // updateCounters() function updates the value of the character and word counter 
 const updateCounters = () => {
-    const text = textBox.innerText
+    // remove the newline character (\n) when clearing
+    // the text field to ensure an accurate character count
+    const text = textBox.innerText == '\n' ? '' : textBox.innerText;
     characterCounter.innerHTML = text.length;
 
     // checking whether the string is empty and does not consist of only spaces
