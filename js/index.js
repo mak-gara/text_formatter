@@ -189,6 +189,7 @@ Object.values(removingItems).forEach((item) => {
             } else {
                 textBox.innerHTML = clearedText;
             }
+            updateCounters();
         }
     });
 });
