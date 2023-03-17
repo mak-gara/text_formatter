@@ -92,6 +92,7 @@ const copyToClipboard = (elem) => {
         });
 }
 
+
 const accordion = document.getElementById('accordion');
 const accordionItems = accordion.getElementsByClassName('accordion-item');
 const textBox = document.getElementById('textBox');
@@ -191,12 +192,3 @@ Object.values(removingItems).forEach((item) => {
         }
     });
 });
-
-
-
-
-
-
-
-
-

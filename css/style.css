@@ -355,7 +355,8 @@ body {
 }
 
 .highlighted {
-    background-color: yellow;
-    color: #4C33FF;
-    font-weight: 600;
+    background-color: #4C33FF;
+    color: white;
+    font-weight: 400;
+    border-radius: 3px;
 }
