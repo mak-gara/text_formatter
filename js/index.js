@@ -87,13 +87,43 @@ const updateCounters = () => {
 const copyToClipboard = (elem) => {
     navigator.clipboard.writeText(elem.innerText)
         .then(() => {
+            console.log(showAlert('success', 'Text copied to clipboard'));
             console.log('Text copied to clipboard');
         })
         .catch(err => {
+            showAlert('danger', 'Error copying text');
             console.error('Error copying text: ', err);
         });
 }
 
+// showAlert() function displays alert
+const showAlert = (type, message) => {
+    const alert = document.createElement('div');
+    alert.classList.add('alert', `alert_${type}`);
+    alert.innerHTML = `
+        <div class="alert__container">
+            <div class="alert__icon">
+                <img src="img/${type}.svg" alt="${type}-icon">
+            </div>
+            <div class="alert__message">
+                ${message}
+            </div>
+            <button class="alert__btn-close">
+                <img src="img/cross.svg" alt="close">
+            </button>
+        </div>
+    `;
+    document.getElementById('overlay').appendChild(alert);
+
+    setTimeout(() => {
+        alert.remove();
+    }, 8000);
+
+    const closeBtn = alert.querySelector('.alert__btn-close');
+    closeBtn.addEventListener('click', () => {
+        alert.remove();
+    });
+}
 
 const accordion = document.getElementById('accordion');
 const accordionItems = accordion.getElementsByClassName('accordion-item');

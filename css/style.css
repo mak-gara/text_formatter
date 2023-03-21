@@ -360,3 +360,54 @@ body {
     font-weight: 400;
     border-radius: 3px;
 }
+
+.overlay {
+    margin-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.alert {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+.alert_success {
+    background: #EAF7EE;
+    border: 2px solid #3CBB5E;
+}
+
+.alert_danger {
+    background: #FCEDE9;
+    border: 2px solid #EA4F2C;
+}
+
+.alert__container {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.alert__message {
+    font-size: 16px;
+    color: #6C757F;
+}
+
+.alert_btn-close {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+.alert_btn-close:hover {
+    transform: scale(1.2);
+}
