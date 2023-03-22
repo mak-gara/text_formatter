@@ -1,5 +1,76 @@
 @import url('reset.css');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500;900&display=swap');
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.eot') format('eot'),
+        url('../fonts/Roboto/Roboto-Regular.otf') format('otf'),
+        url('../fonts/Roboto/Roboto-Regular.svg') format('svg'),
+        url('../fonts/Roboto/Roboto-Regular.ttf') format('ttf'),
+        url('../fonts/Roboto/Roboto-Regular.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Medium.eot') format('eot'),
+        url('../fonts/Roboto/Roboto-Medium.otf') format('otf'),
+        url('../fonts/Roboto/Roboto-Medium.svg') format('svg'),
+        url('../fonts/Roboto/Roboto-Medium.ttf') format('ttf'),
+        url('../fonts/Roboto/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Medium.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Black.eot') format('eot'),
+        url('../fonts/Roboto/Roboto-Black.otf') format('otf'),
+        url('../fonts/Roboto/Roboto-Black.svg') format('svg'),
+        url('../fonts/Roboto/Roboto-Black.ttf') format('ttf'),
+        url('../fonts/Roboto/Roboto-Black.woff') format('woff'),
+        url('../fonts/Roboto/Roboto-Black.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('../fonts/RobotoSlab/RobotoSlab-Regular.eot') format('eot'),
+        url('../fonts/RobotoSlab/RobotoSlab-Regular.otf') format('otf'),
+        url('../fonts/RobotoSlab/RobotoSlab-Regular.svg') format('svg'),
+        url('../fonts/RobotoSlab/RobotoSlab-Regular.ttf') format('ttf'),
+        url('../fonts/RobotoSlab/RobotoSlab-Regular.woff') format('woff'),
+        url('../fonts/RobotoSlab/RobotoSlab-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('../fonts/RobotoSlab/RobotoSlab-Bold.eot') format('eot'),
+        url('../fonts/RobotoSlab/RobotoSlab-Bold.otf') format('otf'),
+        url('../fonts/RobotoSlab/RobotoSlab-Bold.svg') format('svg'),
+        url('../fonts/RobotoSlab/RobotoSlab-Bold.ttf') format('ttf'),
+        url('../fonts/RobotoSlab/RobotoSlab-Bold.woff') format('woff'),
+        url('../fonts/RobotoSlab/RobotoSlab-Bold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/JetBrainsMono/JetBrainsMono-Regular.eot') format('eot'),
+        url('../fonts/JetBrainsMono/JetBrainsMono-Regular.otf') format('otf'),
+        url('../fonts/JetBrainsMono/JetBrainsMono-Regular.svg') format('svg'),
+        url('../fonts/JetBrainsMono/JetBrainsMono-Regular.ttf') format('ttf'),
+        url('../fonts/JetBrainsMono/JetBrainsMono-Regular.woff') format('woff'),
+        url('../fonts/JetBrainsMono/JetBrainsMono-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
