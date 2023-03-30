@@ -87,7 +87,7 @@ const updateCounters = () => {
 const copyToClipboard = (elem) => {
     navigator.clipboard.writeText(elem.innerText)
         .then(() => {
-            console.log(showAlert('success', 'Text copied to clipboard'));
+            showAlert('success', 'Text copied to clipboard');
             console.log('Text copied to clipboard');
         })
         .catch(err => {

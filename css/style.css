@@ -76,6 +76,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background: #1F1F25;
     color: #FFFFFF;
+    min-width: 1200px;
 }
 
 .wrapper {
